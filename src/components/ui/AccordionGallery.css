@@ -1,0 +1,368 @@
+.accordion-gallery {
+    --ag-accent: #e3262e;
+    --ag-overlay: #050505;
+    --ag-text: #ffffff;
+    --ag-gap: 10px;
+    --ag-radius: 16px;
+    --ag-media-size: 320px;
+
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: var(--ag-gap);
+
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+
+    overflow: visible;
+}
+
+.accordion-gallery--vertical {
+    flex-direction: column;
+}
+
+/* ========================================================= */
+/* PANEL */
+/* ========================================================= */
+
+.ag-panel {
+    position: relative;
+
+    display: block;
+
+    flex: 1 1 0;
+
+    min-width: 0;
+    min-height: 0;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: var(--ag-radius);
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    outline: none;
+
+    transform-style: preserve-3d;
+    transform-origin: center center;
+
+    background: #0a0a0a;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+        0 12px 35px -18px rgba(0, 0, 0, 0.9);
+
+    will-change:
+        flex-grow,
+        transform;
+
+    backface-visibility: hidden;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ========================================================= */
+/* ACTIVE */
+/* ========================================================= */
+
+.ag-panel--active {
+    border-color: rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        0 20px 50px -18px rgba(0, 0, 0, 0.95);
+}
+
+/* ========================================================= */
+/* FOCUS */
+/* ========================================================= */
+
+.ag-panel:focus-visible {
+    box-shadow:
+        0 0 0 2px var(--ag-accent),
+        0 20px 50px -18px rgba(0, 0, 0, 0.95);
+}
+
+/* ========================================================= */
+/* FRAME */
+/* ========================================================= */
+
+.ag-panel__frame {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: inherit;
+}
+
+/* ========================================================= */
+/* MEDIA */
+/* ========================================================= */
+
+.ag-panel__media {
+    --ag-gray: 1;
+    --ag-dim: 0.35;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: var(--ag-media-size);
+    height: 100%;
+
+    filter:
+        grayscale(var(--ag-gray))
+        brightness(
+            calc(
+                1 -
+                    (
+                        var(--ag-dim) *
+                            0.18
+                    )
+            )
+        );
+
+    will-change:
+        transform,
+        filter;
+
+    transform:
+        translate3d(-50%, -50%, 0);
+
+    backface-visibility: hidden;
+}
+
+/* Vertical */
+
+.accordion-gallery--vertical
+    .ag-panel__media {
+    width: 100%;
+    height: var(--ag-media-size);
+}
+
+/* Image */
+
+.ag-panel__media img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+/* ========================================================= */
+/* OVERLAY */
+/* ========================================================= */
+
+.ag-panel__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 32%,
+            rgba(0, 0, 0, 0.08) 48%,
+            rgba(0, 0, 0, 0.88) 100%
+        ),
+        rgba(0, 0, 0, var(--ag-dim, 0.35));
+
+    transition:
+        background 0.35s ease;
+}
+
+/* Active image brighter */
+
+.ag-panel--active
+    .ag-panel__overlay {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 30%,
+            rgba(0, 0, 0, 0.05) 52%,
+            rgba(0, 0, 0, 0.78) 100%
+        );
+}
+
+/* ========================================================= */
+/* LABEL */
+/* ========================================================= */
+
+.ag-panel__label {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+/* Accent bar */
+
+.ag-panel__bar {
+    flex: 0 0 auto;
+
+    width: 3px;
+    height: 30px;
+
+    border-radius: 999px;
+
+    background: var(--ag-accent);
+
+    opacity: 0;
+
+    transform: translateX(-18px);
+
+    box-shadow:
+        0 0 16px
+            color-mix(
+                in srgb,
+                var(--ag-accent) 70%,
+                transparent
+            );
+}
+
+/* Text */
+
+.ag-panel__text {
+    min-width: 0;
+
+    color: var(--ag-text);
+
+    font-family: inherit;
+
+    font-weight: 700;
+
+    font-size: clamp(
+        1rem,
+        1.4vw,
+        1.35rem
+    );
+
+    line-height: 1.1;
+
+    letter-spacing: -0.01em;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    opacity: 0;
+
+    transform: translateX(-18px);
+
+    text-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================================= */
+/* HOVER */
+/* ========================================================= */
+
+.ag-panel:hover {
+    border-color:
+        rgba(227, 38, 46, 0.3);
+
+    box-shadow:
+        0 22px 50px -18px rgba(0, 0, 0, 0.95),
+        0 0 35px rgba(227, 38, 46, 0.07);
+}
+
+/* ========================================================= */
+/* MOBILE */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+    .accordion-gallery {
+        gap: 8px;
+        perspective: 900px;
+    }
+
+    .ag-panel__label {
+        left: 17px;
+        right: 17px;
+        bottom: 17px;
+    }
+
+    .ag-panel__text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .accordion-gallery {
+        flex-direction: column;
+
+        height: auto !important;
+
+        gap: 8px;
+
+        perspective: none;
+    }
+
+    .ag-panel {
+        min-height: 96px;
+
+        transform: none !important;
+
+        flex: 1 1 auto !important;
+    }
+
+    .accordion-gallery
+        .ag-panel__media {
+        width: 100%;
+        height: var(--ag-media-size);
+    }
+
+    .ag-panel__label {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .ag-panel__text {
+        font-size: 0.95rem;
+    }
+}
+
+/* ========================================================= */
+/* REDUCED MOTION */
+/* ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .ag-panel,
+    .ag-panel__media {
+        will-change: auto;
+    }
+}
