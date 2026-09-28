@@ -18,6 +18,7 @@ import {
     ShoppingBag,
     Store,
     UtensilsCrossed,
+    type LucideIcon,
 } from "lucide-react";
 
 /* =========================================================
@@ -28,7 +29,7 @@ interface Category {
     number: string;
     title: string;
     description: string;
-    icon: ElementType;
+    icon: LucideIcon;
 }
 
 const categories: Category[] = [
