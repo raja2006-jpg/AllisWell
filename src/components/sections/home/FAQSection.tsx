@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { faqs } from "@/data/faqs";
-import { Mina } from "next/font/google";
 
 export function FAQSection() {
     const [openId, setOpenId] = useState<string | null>(faqs[0].id);
