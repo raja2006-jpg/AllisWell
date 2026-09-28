@@ -372,7 +372,7 @@ export function AboutPreview() {
                                 <FaInstagram
                                     size={16}
                                 />
-                                Follow on Instagram
+                                Follow on Instagram 
                             </a>
                         </div>
                     </motion.div>
