@@ -112,7 +112,7 @@ export function PortfolioSection() {
                         }}
                         className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/50 md:text-base md:leading-8"
                     >
-                        A selection of brands, businesses and stories we've
+                        A selection of brands, businesses and stories we&apos;ve
                         helped bring to life through content, promotion and
                         digital experiences.
                     </motion.p>

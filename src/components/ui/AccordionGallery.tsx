@@ -11,6 +11,7 @@ import type {
     KeyboardEvent,
     MouseEvent,
 } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 import "./AccordionGallery.css";
@@ -120,7 +121,9 @@ export default function AccordionGallery({
     const [active, setActive] =
         useState(safeDefault);
 
-    activeRef.current = active;
+    useEffect(() => {
+        activeRef.current = active;
+    }, [active]);
 
     const reducedMotion =
         typeof window !== "undefined" &&
@@ -523,7 +526,7 @@ export default function AccordionGallery({
         "--ag-text": textColor,
         "--ag-gap": `${gap}px`,
         "--ag-radius": `${radius}px`,
-        "--ag-media-size": `${mediaSizeRef.current}px`,
+        "--ag-media-size": "320px",
         height: vertical
             ? `${Math.round(height * 1.6)}px`
             : `${height}px`,
@@ -564,13 +567,15 @@ export default function AccordionGallery({
                                     ] = element;
                                 }}
                             >
-                                <img
+                                <Image
                                     src={item.image}
                                     alt={
                                         item.alt ??
                                         item.label ??
                                         ""
                                     }
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     draggable={false}
                                 />
                             </span>
@@ -644,7 +649,7 @@ export default function AccordionGallery({
 
                     "aria-current":
                         isActive
-                            ? "true"
+                            ? ("true" as const)
                             : undefined,
 
                     onMouseEnter: () =>

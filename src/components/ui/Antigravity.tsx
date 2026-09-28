@@ -43,6 +43,11 @@ const clamp = (value: number, min: number, max: number) =>
 const modulo = (value: number, divisor: number) =>
   ((value % divisor) + divisor) % divisor;
 
+const seededRandom = (seed: number) => {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+};
+
 const AntigravityInner: React.FC<AntigravityProps> = ({
   count = 300,
   magnetRadius = 10,
@@ -71,7 +76,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
     y: 0,
   });
 
-  const lastMouseMoveTime = useRef<number>(Date.now());
+  const lastMouseMoveTime = useRef<number>(0);
 
   const virtualMouse = useRef({
     x: 0,
@@ -85,14 +90,15 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
     const generated: Particle[] = [];
 
     for (let i = 0; i < count; i++) {
-      const x = (Math.random() - 0.5) * width;
-      const y = (Math.random() - 0.5) * height;
-      const z = (Math.random() - 0.5) * 20;
+      const random = (offset: number) => seededRandom(i * 6 + offset);
+      const x = (random(0) - 0.5) * width;
+      const y = (random(1) - 0.5) * height;
+      const z = (random(2) - 0.5) * 20;
 
       generated.push({
-        t: Math.random() * 100,
+        t: random(3) * 100,
 
-        speed: 0.01 + Math.random() / 200,
+        speed: 0.01 + random(4) / 200,
 
         mx: x,
         my: y,
@@ -102,7 +108,7 @@ const AntigravityInner: React.FC<AntigravityProps> = ({
         cy: y,
         cz: z,
 
-        randomRadiusOffset: (Math.random() - 0.5) * 2,
+        randomRadiusOffset: (random(5) - 0.5) * 2,
       });
     }
 

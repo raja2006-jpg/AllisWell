@@ -189,7 +189,7 @@ export default function ServiceDetail({
                             </h2>
 
                             <p className="mt-5 max-w-xl text-sm leading-7 text-white/40">
-                                Tell us what you need and we'll help you
+                                Tell us what you need and we&apos;ll help you
                                 choose the right direction for your project.
                             </p>
                         </div>

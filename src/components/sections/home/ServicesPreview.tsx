@@ -427,7 +427,7 @@ export function ServicesPreview() {
                             </p>
 
                             <h3 className="mt-3 max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.04em] text-white md:text-4xl lg:text-5xl">
-                                Let's build something
+                                Let&apos;s build something
                                 <span className="text-white/30">
                                     {" "}
                                     people remember.
@@ -436,7 +436,7 @@ export function ServicesPreview() {
 
                             <p className="mt-5 max-w-xl text-sm font-medium leading-7 text-white/55">
                                 Tell us what you want to promote, create or
-                                build — and let's choose the right direction
+                                build — and let&apos;s choose the right direction
                                 together.
                             </p>
                         </div>

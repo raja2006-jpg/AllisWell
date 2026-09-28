@@ -7,7 +7,10 @@ import {
     Lightbulb,
     TrendingUp,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import {
+    motion,
+    type Variants,
+} from "framer-motion";
 
 const steps = [
     {
@@ -53,7 +56,7 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: {
         opacity: 0,
         y: 18,
@@ -63,7 +66,7 @@ const itemVariants = {
         y: 0,
         transition: {
             duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
         },
     },
 };

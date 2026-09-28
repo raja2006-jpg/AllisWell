@@ -7,10 +7,11 @@ import {
     BriefcaseBusiness,
     Star,
     Users,
+    type LucideIcon,
 } from "lucide-react";
 
 interface StatItem {
-    icon: React.ElementType;
+    icon: LucideIcon;
     target: number;
     suffix: string;
     label: string;
@@ -58,7 +59,6 @@ function AnimatedCounter({
 
     useEffect(() => {
         if (!start) {
-            setCount(0);
             return;
         }
 
@@ -100,9 +100,11 @@ function AnimatedCounter({
         };
     }, [start, target]);
 
+    const displayedCount = start ? count : 0;
+
     return (
         <span className="tabular-nums">
-            {count.toLocaleString()}
+            {displayedCount.toLocaleString()}
             {suffix}
         </span>
     );

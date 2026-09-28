@@ -56,6 +56,9 @@ export function Navbar() {
     const [scrolled, setScrolled] =
         useState(false);
 
+    const [previousPathname, setPreviousPathname] =
+        useState(pathname);
+
     const [mobileOpen, setMobileOpen] =
         useState(false);
 
@@ -68,6 +71,13 @@ export function Navbar() {
         desktopServicesOpen,
         setDesktopServicesOpen,
     ] = useState(false);
+
+    if (previousPathname !== pathname) {
+        setPreviousPathname(pathname);
+        setMobileOpen(false);
+        setMobileServicesOpen(false);
+        setDesktopServicesOpen(false);
+    }
 
     // ============================================================
     // SCROLL DETECTION
@@ -114,10 +124,6 @@ export function Navbar() {
     // CLOSE ALL OPEN NAV STATES WHEN ROUTE CHANGES
     // ============================================================
     useEffect(() => {
-        setMobileOpen(false);
-        setMobileServicesOpen(false);
-        setDesktopServicesOpen(false);
-
         // Remove focus from the clicked dropdown item.
         // This prevents :focus-within from keeping the
         // Services dropdown visible after navigation.
@@ -489,7 +495,7 @@ export function Navbar() {
                             "
                         >
                             <span>
-                                Let's Talk
+                                Let&apos;s Talk
                             </span>
 
                             <ArrowUpRight
@@ -1015,7 +1021,7 @@ export function Navbar() {
                                         hover:bg-red-500
                                     "
                                 >
-                                    Let's Talk
+                                    Let&apos;s Talk
                                 </Link>
                             </div>
 
