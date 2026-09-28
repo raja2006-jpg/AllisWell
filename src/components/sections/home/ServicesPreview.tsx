@@ -12,13 +12,15 @@ import {
     Megaphone,
     Store,
     Users,
+    ShoppingCart,
 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa6";
 
 const serviceItems = [
     {
         number: "01",
-        title: "Instagram Promotion",
+         slug: "instagram-management",
+        title: "Instagram Management",
         category: "SOCIAL MEDIA",
         description:
             "Put your business in front of an engaged audience through creator-led Instagram promotions, reels and social content.",
@@ -26,44 +28,47 @@ const serviceItems = [
     },
     {
         number: "02",
+        slug: "digital-marketing",
         title: "Digital Marketing",
         category: "DIGITAL GROWTH",
         description:
             "Build a stronger digital presence with practical marketing strategies designed around your brand, audience and goals.",
         icon: BarChart3,
     },
+    // {
+    //     number: "03",
+    //     title: "Business Promotion",
+    //     category: "BUSINESS",
+    //     description:
+    //         "Give shops, restaurants, hotels, showrooms and local brands the visibility they need through strategic creator promotion.",
+    //     icon: Building,
+    // },
+    // {
+    //     number: "04",
+    //     title: "Political Marketing",
+    //     category: "CAMPAIGN MEDIA",
+    //     description:
+    //         "Digital communication and campaign media support for political personalities, teams and public-facing outreach.",
+    //     icon: Users,
+    // },
     {
         number: "03",
-        title: "Business Promotion",
-        category: "BUSINESS",
-        description:
-            "Give shops, restaurants, hotels, showrooms and local brands the visibility they need through strategic creator promotion.",
-        icon: Building,
-    },
-    {
-        number: "04",
-        title: "Political Marketing",
-        category: "CAMPAIGN MEDIA",
-        description:
-            "Digital communication and campaign media support for political personalities, teams and public-facing outreach.",
-        icon: Users,
-    },
-    {
-        number: "05",
+        slug: "personal-shoot",
         title: "Personal Shoot",
         category: "CREATIVE PRODUCTION",
         description:
             "Creative shoots for birthdays, weddings, cinematic couple reels, outdoor shoots and memorable personal moments.",
         icon: Camera,
     },
-    {
-        number: "06",
-        title: "Website Development",
-        category: "WEB DEVELOPMENT",
-        description:
-            "Modern responsive websites that give your business a professional digital identity and make it easier for customers to connect.",
-        icon: Code2,
-    },
+   {
+    number: "04",
+    slug: "digital-store",
+    title: "Digital Store",
+    category: "visiting card & Photo Frames",
+    description:
+        "Quality printing and photo products for your business and personal needs — including visiting cards, photo frames and custom print solutions.",
+    icon: ShoppingCart,
+},
 ];
 
 export function ServicesPreview() {
@@ -195,7 +200,7 @@ export function ServicesPreview() {
                 {/* ========================================================= */}
 
                 <div className="mt-16 md:mt-20">
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-2">
                         {serviceItems.map((service, index) => {
                             const Icon = service.icon;
 
@@ -222,7 +227,7 @@ export function ServicesPreview() {
                                     className="group"
                                 >
                                     <Link
-                                        href="/services"
+                                         href={`/services/${service.slug}`}
                                         className="relative flex min-h-[360px] h-full overflow-hidden rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_8px_28px_rgba(0,0,0,0.035)] outline-none transition-all duration-500 hover:-translate-y-3 hover:border-brand-red/20 hover:shadow-[0_30px_70px_rgba(0,0,0,0.11)] focus-visible:ring-2 focus-visible:ring-brand-red/50 md:p-7"
                                     >
                                         {/* ================================================= */}
@@ -276,8 +281,8 @@ export function ServicesPreview() {
                                                             1,
                                                         ],
                                                     }}
-                                                    className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-[22px] border border-black/[0.10] bg-[#f0ede5] shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all duration-500 group-hover:border-brand-red group-hover:bg-brand-red group-hover:shadow-[0_16px_35px_rgba(220,38,38,0.24)]"
-                                                >
+                                                    className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-[22px] border border-black/[0.10] bg-[#f0ede5]   shadow-[0_8px_20px_rgba(0,0,0,0.05)] transition-all duration-500 group-hover:border-brand-red group-hover:bg-brand-red group-hover:shadow-[0_5px_20px_rgba(220,38,38,0.24)]"
+                                                >   
                                                     {/*
                                                      * IMPORTANT:
                                                      * Direct !text color on SVG.
@@ -285,8 +290,8 @@ export function ServicesPreview() {
                                                      * rules from making the logo invisible.
                                                      */}
                                                     <Icon
-                                                        size={32}
-                                                        className="!text-[#171717] transition-colors duration-300 group-hover:!text-red-300"
+                                                        size={35}
+                                                        className=" transition-colors duration-300 text-red-300 group-hover:text-red-300"
                                                     />
                                                 </motion.div>
 

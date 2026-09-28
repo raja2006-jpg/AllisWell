@@ -324,7 +324,7 @@ export function HeroSection() {
                     </p>
 
                     <p className="text-[10px] uppercase tracking-[0.15em] text-white/35">
-                      Instagram • 48.3K+
+                      Instagram 
                     </p>
                   </div>
                 </a>

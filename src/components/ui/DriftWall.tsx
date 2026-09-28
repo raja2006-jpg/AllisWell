@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -112,6 +113,7 @@ const DEFAULT_ITEMS: DriftWallItem[] = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const prefersReducedMotion = (): boolean => {
   if (typeof window === "undefined") {
     return false;

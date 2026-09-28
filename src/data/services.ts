@@ -1,216 +1,324 @@
-// Services data — edit this file to update, add, or remove services
-// The UI reads from this file; no need to touch any component code
+export type PackageTier = "Basic" | "Medium" | "Premium";
+export type ServiceIcon = "megaphone" | "chart" | "camera" | "store";
 
-export type ServiceCategory =
-    | "Business Promotion"
-    | "Social Media"
-    | "Video Marketing"
-    | "Influencer / Creator"
-    | "Events"
-    | "Entertainment";
-
-export interface Service {
-    id: string;
-    category: ServiceCategory;
-    icon: string; // Lucide icon name
-    title: string;
-    shortDesc: string;
-    description: string;
-    benefits: string[];
-    featured?: boolean;
+export interface PackageConfig {
+    tier: PackageTier;
+    price: number;
+    description?: string;
+    features: string[];
 }
 
-export const services: Service[] = [
+export interface OfferItem {
+    id: string;
+    title: string;
+    eyebrow: string;
+    description: string;
+    image: string;
+    features?: string[];
+    packages: PackageConfig[];
+}
+
+export interface ServiceFAQItem {
+    question: string;
+    answer: string;
+}
+
+export interface ServiceConfig {
+    slug: string;
+    number: string;
+    title: string;
+    shortTitle: string;
+    category: string;
+    description: string;
+    heroDescription: string;
+    heroImage: string;
+    icon: ServiceIcon;
+    highlights: string[];
+    offers: OfferItem[];
+    faq: ServiceFAQItem[];
+}
+
+const tierPackages = (
+    prices: [number, number, number],
+    features: [string[], string[], string[]] = [[], [], []],
+): PackageConfig[] =>
+    (["Basic", "Medium", "Premium"] as const).map(
+        (tier, index) => ({
+            tier,
+            price: prices[index],
+            features: features[index],
+        }),
+    );
+
+const serviceFaqs: ServiceFAQItem[] = [
     {
-        id: "instagram-promotion",
-        category: "Social Media",
-        icon: "Camera",
-        title: "Instagram Promotion",
-        shortDesc: "Grow your brand's Instagram reach with our engaged 48K+ audience.",
-        description:
-            "We create and share promotional content about your business across our Instagram channel, reaching our actively engaged local audience of 48.3K+ followers.",
-        benefits: [
-            "Access to 48.3K+ Instagram followers",
-            "Authentic audience engagement",
-            "Story, Reel & post promotions",
-            "Local audience targeting",
-        ],
-        featured: true,
+        question: "How do I get started?",
+        answer:
+            "Choose an offer and package, then use Book Now to send your selection to our enquiry page. Our team will follow up to discuss the details.",
     },
     {
-        id: "youtube-promotion",
-        category: "Video Marketing",
-        icon: "Play",
-        title: "YouTube Promotion",
-        shortDesc: "Feature your business in our YouTube videos and grow your visibility.",
+        question: "How is the booking confirmed?",
+        answer:
+            "Your request is an enquiry, not a payment or confirmed booking. We will contact you directly to confirm availability and next steps.",
+    },
+];
+
+export const services: ServiceConfig[] = [
+    {
+        slug: "instagram-management",
+        number: "01",
+        title: "Instagram Management",
+        shortTitle: "Make your next post count.",
+        category: "SOCIAL MEDIA",
         description:
-            "Get your business featured in our YouTube content — from dedicated coverage videos to mentions in our popular vlog series.",
-        benefits: [
-            "Dedicated coverage video",
-            "Long-form audience engagement",
-            "Searchable video content",
-            "Permanent online presence",
+            "Creator-led Instagram promotion and monthly content packages for brands ready to reach a wider audience.",
+        heroDescription:
+            "Bring your brand to an engaged audience with thoughtful Instagram promotions and consistent monthly content.",
+        heroImage:
+            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=2000&q=85",
+        icon: "megaphone",
+        highlights: [
+            "Creator-led promotion",
+            "Single video options",
+            "Monthly packages",
+            "Clear package pricing",
         ],
-        featured: true,
+        offers: [
+            {
+                id: "single-video-promotion",
+                title: "Single Video Promotion",
+                eyebrow: "ONE-TIME PROMOTION",
+                description:
+                    "Promote your business with a single video feature on Instagram. Choose the package that suits your campaign.",
+                image:
+                    "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages([4000, 4000, 5000]),
+            },
+            {
+                id: "monthly-package",
+                title: "Monthly Package",
+                eyebrow: "ONGOING CONTENT",
+                description:
+                    "Keep your brand visible with a monthly mix of videos and posters.",
+                image:
+                    "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages(
+                    [20000, 25000, 30000],
+                    [
+                        ["10 videos", "5 posters"],
+                        ["15 videos", "10 posters"],
+                        ["20 videos", "15 posters"],
+                    ],
+                ),
+            },
+        ],
+        faq: serviceFaqs,
     },
     {
-        id: "business-promotion",
-        category: "Business Promotion",
-        icon: "Briefcase",
-        title: "Business Promotion",
-        shortDesc: "Complete digital promotion for your local business across platforms.",
+        slug: "digital-marketing",
+        number: "02",
+        title: "Digital Marketing",
+        shortTitle: "Grow with a clearer strategy.",
+        category: "DIGITAL GROWTH",
         description:
-            "A comprehensive promotional package covering your business across Instagram, YouTube, and other social platforms — telling your brand's story.",
-        benefits: [
-            "Multi-platform promotion",
-            "Professional video production",
-            "Social media coverage",
-            "Business storytelling",
+            "Digital marketing support built around practical campaign content and a more consistent online presence.",
+        heroDescription:
+            "Give your business a stronger digital presence with focused video promotion and monthly content.",
+        heroImage:
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=85",
+        icon: "chart",
+        highlights: [
+            "Campaign-ready content",
+            "Single video options",
+            "Monthly packages",
+            "Clear package pricing",
         ],
-        featured: true,
+        offers: [
+            {
+                id: "single-video-promotion",
+                title: "Single Video Promotion",
+                eyebrow: "ONE-TIME PROMOTION",
+                description:
+                    "Put a campaign in motion with a single promotional video. Select a package to enquire.",
+                image:
+                    "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages([7000, 8000, 9000]),
+            },
+            {
+                id: "monthly-package",
+                title: "Monthly Package",
+                eyebrow: "ONGOING CONTENT",
+                description:
+                    "Maintain a steady digital presence with a monthly video package.",
+                image:
+                    "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages(
+                    [25000, 30000, 35000],
+                    [["6 videos"], ["8 videos"], ["10 videos"]],
+                ),
+            },
+        ],
+        faq: serviceFaqs,
     },
     {
-        id: "hotel-promotion",
-        category: "Business Promotion",
-        icon: "Hotel",
-        title: "Hotel Promotion",
-        shortDesc: "Showcase your hotel to thousands of local and travel audiences.",
+        slug: "personal-shoot",
+        number: "03",
+        title: "Personal Shoot",
+        shortTitle: "Keep the moment close.",
+        category: "CREATIVE PRODUCTION",
         description:
-            "Cinematic coverage of your hotel's amenities, rooms, food, and experience — shared across our social channels to attract guests.",
-        benefits: [
-            "Cinematic hotel walkthrough",
-            "Food & amenity highlight",
-            "Guest experience storytelling",
-            "Travel audience reach",
+            "Personal shoots for birthdays, wedding reels and outdoor couple sessions, with editing included in every package.",
+        heroDescription:
+            "Celebrate a milestone or capture a story with a considered personal shoot. Editing is included in all listed services.",
+        heroImage:
+            "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85",
+        icon: "camera",
+        highlights: [
+            "Birthday shoots",
+            "Wedding cinematic reels",
+            "Couple outdoor shoots",
+            "Editing included",
         ],
-    },
-    {
-        id: "restaurant-promotion",
-        category: "Business Promotion",
-        icon: "UtensilsCrossed",
-        title: "Restaurant Promotion",
-        shortDesc: "Mouth-watering food content that brings customers to your door.",
-        description:
-            "Professional food photography and videography combined with our social reach to showcase your restaurant's best dishes and atmosphere.",
-        benefits: [
-            "Food styling visuals",
-            "Menu highlights",
-            "Restaurant ambience coverage",
-            "Local food audience reach",
+        offers: [
+            {
+                id: "birthday-shoot",
+                title: "Birthday Shoot",
+                eyebrow: "PERSONAL SHOOT",
+                description:
+                    "Capture the celebration with a dedicated birthday shoot. Editing is included.",
+                image:
+                    "https://images.unsplash.com/photo-1530103862676-de8c9deabad1?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages(
+                    [3000, 4000, 5000],
+                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                ),
+            },
+            {
+                id: "wedding-cinematic-reel",
+                title: "Wedding Cinematic Reel",
+                eyebrow: "PERSONAL SHOOT",
+                description:
+                    "A cinematic wedding reel to remember the occasion. Editing is included.",
+                image:
+                    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages(
+                    [3000, 4000, 5000],
+                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                ),
+            },
+            {
+                id: "couple-outdoor-shoot",
+                title: "Couple Outdoor Shoot",
+                eyebrow: "PERSONAL SHOOT",
+                description:
+                    "Create a set of outdoor memories together. Editing is included.",
+                image:
+                    "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85",
+                packages: tierPackages(
+                    [3000, 4000, 5000],
+                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                ),
+            },
         ],
-    },
-    {
-        id: "product-promotion",
-        category: "Business Promotion",
-        icon: "Package",
-        title: "Product Promotion",
-        shortDesc: "Showcase your product to an engaged and relevant audience.",
-        description:
-            "Feature your product with quality visuals and authentic creator-style reviews that connect with real buyers.",
-        benefits: [
-            "Product showcase video",
-            "Authentic creator review",
-            "Social media feature",
-            "Buyer audience targeting",
-        ],
-    },
-    {
-        id: "influencer-promotion",
-        category: "Influencer / Creator",
-        icon: "Star",
-        title: "Influencer / Creator Promotion",
-        shortDesc: "Grow your personal brand through our creator network and platforms.",
-        description:
-            "For individual creators, artists, musicians, and influencers who want to grow their audience through cross-promotion on our channels.",
-        benefits: [
-            "Cross-platform promotion",
-            "Creator-to-creator collaboration",
-            "Audience growth support",
-            "Personal brand boost",
-        ],
-    },
-    {
-        id: "brand-collaboration",
-        category: "Influencer / Creator",
-        icon: "Handshake",
-        title: "Brand Collaboration",
-        shortDesc: "Long-term partnership for ongoing brand visibility and engagement.",
-        description:
-            "Build a lasting partnership with AllIsWellMSVlogsz for consistent, ongoing promotion across our content and social channels.",
-        benefits: [
-            "Long-term visibility",
-            "Multiple content pieces",
-            "Recurring audience exposure",
-            "Brand ambassador presence",
-        ],
-    },
-    {
-        id: "event-coverage",
-        category: "Events",
-        icon: "Calendar",
-        title: "Event Coverage",
-        shortDesc: "Professional coverage of your event, launch, or celebration.",
-        description:
-            "We cover your event — grand opening, product launch, cultural event, or promotion — with professional content creation and immediate social publishing.",
-        benefits: [
-            "Real-time social coverage",
-            "Professional event documentation",
-            "Highlight reel creation",
-            "Event promotion reach",
-        ],
-    },
-    {
-        id: "video-marketing",
-        category: "Video Marketing",
-        icon: "Video",
-        title: "Video Marketing",
-        shortDesc: "Engaging video content that tells your brand's story.",
-        description:
-            "From scripted promotional videos to authentic on-location shoots, we create video marketing content designed to engage and convert.",
-        benefits: [
-            "Professional video production",
-            "Script & concept development",
-            "On-location or studio shoots",
-            "Edited delivery-ready content",
+        faq: [
+            {
+                question: "Is editing included?",
+                answer:
+                    "Yes. Editing is included in all Personal Shoot services and packages listed here.",
+            },
+            ...serviceFaqs,
         ],
     },
     {
-        id: "social-media-promotion",
-        category: "Social Media",
-        icon: "Share2",
-        title: "Social Media Promotion",
-        shortDesc: "Dedicated social media promotion across Instagram, YouTube & more.",
+        slug: "digital-store",
+        number: "04",
+        title: "Digital Store",
+        shortTitle: "Thoughtful details, made tangible.",
+        category: "PRINT & PHOTO PRODUCTS",
         description:
-            "A structured social media promotion campaign featuring your business across multiple platforms with consistent messaging and visual branding.",
-        benefits: [
-            "Multi-platform strategy",
-            "Consistent brand messaging",
-            "Audience engagement",
-            "Growth tracking insights",
+            "Choose a visiting card finish or enquire about a photo frame in a standard or custom size.",
+        heroDescription:
+            "Explore visiting cards in four finishes and photo frames with standard and custom-size enquiry options.",
+        heroImage:
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=2000&q=85",
+        icon: "store",
+        highlights: [
+            "Four card finishes",
+            "1000 cards per option",
+            "Double-side printing",
+            "Custom frame sizes",
         ],
-    },
-    {
-        id: "content-creation",
-        category: "Entertainment",
-        icon: "Film",
-        title: "Content Creation",
-        shortDesc: "Original, engaging content for your brand or as entertaining creator content.",
-        description:
-            "We produce engaging short-form and long-form content — from Instagram reels to YouTube vlogs — integrating your brand naturally into the narrative.",
-        benefits: [
-            "Short-form and long-form",
-            "Authentic brand integration",
-            "Entertainment-first approach",
-            "Audience-tested formats",
+        offers: [],
+        faq: [
+            {
+                question: "Can I request a custom photo-frame size?",
+                answer:
+                    "Yes. Choose Custom Size in the photo-frame section to send a custom-size enquiry.",
+            },
+            ...serviceFaqs,
         ],
     },
 ];
 
-export const serviceCategories: ServiceCategory[] = [
-    "Business Promotion",
-    "Social Media",
-    "Video Marketing",
-    "Influencer / Creator",
-    "Events",
-    "Entertainment",
-];
+export const visitingCardTypes = [
+    {
+        id: "standard",
+        title: "Standard",
+        material: "Everyday finish",
+        price: 900,
+        quantity: "1000 cards",
+        sides: "Double side",
+        accent: "#857d69",
+        surface: "linear-gradient(135deg, #35342f 0%, #10100f 58%, #6a6253 100%)",
+        finish: "standard",
+    },
+    {
+        id: "gloss",
+        title: "Gloss",
+        material: "Reflective gloss",
+        price: 1000,
+        quantity: "1000 cards",
+        sides: "Double side",
+        accent: "#718b9c",
+        surface: "linear-gradient(135deg, #dce7ed 0%, #738895 46%, #f8fbfc 100%)",
+        finish: "gloss",
+    },
+    {
+        id: "matt",
+        title: "Matt",
+        material: "Soft matt finish",
+        price: 1100,
+        quantity: "1000 cards",
+        sides: "Double side",
+        accent: "#98705d",
+        surface: "linear-gradient(135deg, #53443c 0%, #171412 58%, #765849 100%)",
+        finish: "matt",
+    },
+    {
+        id: "synthetic",
+        title: "Synthetic",
+        material: "Synthetic stock",
+        price: 1200,
+        quantity: "1000 cards",
+        sides: "Double side",
+        accent: "#b89856",
+        surface: "linear-gradient(135deg, #e3ca84 0%, #85713e 45%, #f1e6c9 100%)",
+        finish: "synthetic",
+    },
+] as const;
+
+export const photoFrameSizes = [
+    { id: "4x6", label: "4 × 6 in" },
+    { id: "5x7", label: "5 × 7 in" },
+    { id: "8x10", label: "8 × 10 in" },
+    { id: "12x18", label: "12 × 18 in" },
+] as const;
+
+export const photoFrameImage =
+    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85";
+
+export function getServiceBySlug(
+    slug: string,
+): ServiceConfig | undefined {
+    return services.find((service) => service.slug === slug);
+}
