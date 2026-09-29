@@ -74,15 +74,19 @@ export const services: ServiceConfig[] = [
             "Creator-led Instagram promotion and monthly content packages for brands ready to reach a wider audience.",
         heroDescription:
             "Bring your brand to an engaged audience with thoughtful Instagram promotions and consistent monthly content.",
-        heroImage:
-            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=2000&q=85",
+
+        // ✅ FIXED LOCAL IMAGE PATH
+        heroImage: "/images/instagram management.jpg",
+
         icon: "megaphone",
+
         highlights: [
             "Creator-led promotion",
             "Single video options",
             "Monthly packages",
             "Clear package pricing",
         ],
+
         offers: [
             {
                 id: "single-video-promotion",
@@ -90,18 +94,27 @@ export const services: ServiceConfig[] = [
                 eyebrow: "ONE-TIME PROMOTION",
                 description:
                     "Promote your business with a single video feature on Instagram. Choose the package that suits your campaign.",
-                image:
-                    "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1400&q=85",
-                packages: tierPackages([4000, 4000, 5000]),
+
+                // ✅ FIXED
+                image: "/images/singlevideo-insta.jpg",
+
+                packages: tierPackages([
+                    4000,
+                    4000,
+                    5000,
+                ]),
             },
+
             {
                 id: "monthly-package",
                 title: "Monthly Package",
                 eyebrow: "ONGOING CONTENT",
                 description:
                     "Keep your brand visible with a monthly mix of videos and posters.",
-                image:
-                    "https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=1400&q=85",
+
+                // ✅ FIXED
+                image: "/images/monthly-insta.jpg",
+
                 packages: tierPackages(
                     [20000, 25000, 30000],
                     [
@@ -112,8 +125,10 @@ export const services: ServiceConfig[] = [
                 ),
             },
         ],
+
         faq: serviceFaqs,
     },
+
     {
         slug: "digital-marketing",
         number: "02",
@@ -124,15 +139,19 @@ export const services: ServiceConfig[] = [
             "Digital marketing support built around practical campaign content and a more consistent online presence.",
         heroDescription:
             "Give your business a stronger digital presence with focused video promotion and monthly content.",
-        heroImage:
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=85",
+
+        // ✅ FIXED LOCAL IMAGE PATH
+        heroImage: "/images/digital marketing.jpg",
+
         icon: "chart",
+
         highlights: [
             "Campaign-ready content",
             "Single video options",
             "Monthly packages",
             "Clear package pricing",
         ],
+
         offers: [
             {
                 id: "single-video-promotion",
@@ -140,26 +159,41 @@ export const services: ServiceConfig[] = [
                 eyebrow: "ONE-TIME PROMOTION",
                 description:
                     "Put a campaign in motion with a single promotional video. Select a package to enquire.",
+
                 image:
                     "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85",
-                packages: tierPackages([7000, 8000, 9000]),
+
+                packages: tierPackages([
+                    7000,
+                    8000,
+                    9000,
+                ]),
             },
+
             {
                 id: "monthly-package",
                 title: "Monthly Package",
                 eyebrow: "ONGOING CONTENT",
                 description:
                     "Maintain a steady digital presence with a monthly video package.",
+
                 image:
                     "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=85",
+
                 packages: tierPackages(
                     [25000, 30000, 35000],
-                    [["6 videos"], ["8 videos"], ["10 videos"]],
+                    [
+                        ["6 videos"],
+                        ["8 videos"],
+                        ["10 videos"],
+                    ],
                 ),
             },
         ],
+
         faq: serviceFaqs,
     },
+
     {
         slug: "personal-shoot",
         number: "03",
@@ -170,15 +204,20 @@ export const services: ServiceConfig[] = [
             "Personal shoots for birthdays, wedding reels and outdoor couple sessions, with editing included in every package.",
         heroDescription:
             "Celebrate a milestone or capture a story with a considered personal shoot. Editing is included in all listed services.",
+
+        // ✅ REMOTE IMAGE
         heroImage:
             "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85",
+
         icon: "camera",
+
         highlights: [
             "Birthday shoots",
             "Wedding cinematic reels",
             "Couple outdoor shoots",
             "Editing included",
         ],
+
         offers: [
             {
                 id: "birthday-shoot",
@@ -186,40 +225,61 @@ export const services: ServiceConfig[] = [
                 eyebrow: "PERSONAL SHOOT",
                 description:
                     "Capture the celebration with a dedicated birthday shoot. Editing is included.",
-                image:
-                    "https://images.unsplash.com/photo-1530103862676-de8c9deabad1?auto=format&fit=crop&w=1400&q=85",
+
+                // ✅ FIXED
+                image: "/images/birthday.jpg",
+
                 packages: tierPackages(
                     [3000, 4000, 5000],
-                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                    [
+                        ["Editing included"],
+                        ["Editing included"],
+                        ["Editing included"],
+                    ],
                 ),
             },
+
             {
                 id: "wedding-cinematic-reel",
                 title: "Wedding Cinematic Reel",
                 eyebrow: "PERSONAL SHOOT",
                 description:
                     "A cinematic wedding reel to remember the occasion. Editing is included.",
+
                 image:
                     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=85",
+
                 packages: tierPackages(
                     [3000, 4000, 5000],
-                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                    [
+                        ["Editing included"],
+                        ["Editing included"],
+                        ["Editing included"],
+                    ],
                 ),
             },
+
             {
                 id: "couple-outdoor-shoot",
                 title: "Couple Outdoor Shoot",
                 eyebrow: "PERSONAL SHOOT",
                 description:
                     "Create a set of outdoor memories together. Editing is included.",
+
                 image:
                     "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=85",
+
                 packages: tierPackages(
                     [3000, 4000, 5000],
-                    [["Editing included"], ["Editing included"], ["Editing included"]],
+                    [
+                        ["Editing included"],
+                        ["Editing included"],
+                        ["Editing included"],
+                    ],
                 ),
             },
         ],
+
         faq: [
             {
                 question: "Is editing included?",
@@ -229,6 +289,7 @@ export const services: ServiceConfig[] = [
             ...serviceFaqs,
         ],
     },
+
     {
         slug: "digital-store",
         number: "04",
@@ -239,16 +300,22 @@ export const services: ServiceConfig[] = [
             "Choose a visiting card finish or enquire about a photo frame in a standard or custom size.",
         heroDescription:
             "Explore visiting cards in four finishes and photo frames with standard and custom-size enquiry options.",
+
+        // ✅ REMOTE IMAGE
         heroImage:
             "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=2000&q=85",
+
         icon: "store",
+
         highlights: [
             "Four card finishes",
             "1000 cards per option",
             "Double-side printing",
             "Custom frame sizes",
         ],
+
         offers: [],
+
         faq: [
             {
                 question: "Can I request a custom photo-frame size?",
@@ -269,9 +336,11 @@ export const visitingCardTypes = [
         quantity: "1000 cards",
         sides: "Double side",
         accent: "#857d69",
-        surface: "linear-gradient(135deg, #35342f 0%, #10100f 58%, #6a6253 100%)",
+        surface:
+            "linear-gradient(135deg, #35342f 0%, #10100f 58%, #6a6253 100%)",
         finish: "standard",
     },
+
     {
         id: "gloss",
         title: "Gloss",
@@ -280,9 +349,11 @@ export const visitingCardTypes = [
         quantity: "1000 cards",
         sides: "Double side",
         accent: "#718b9c",
-        surface: "linear-gradient(135deg, #dce7ed 0%, #738895 46%, #f8fbfc 100%)",
+        surface:
+            "linear-gradient(135deg, #dce7ed 0%, #738895 46%, #f8fbfc 100%)",
         finish: "gloss",
     },
+
     {
         id: "matt",
         title: "Matt",
@@ -291,9 +362,11 @@ export const visitingCardTypes = [
         quantity: "1000 cards",
         sides: "Double side",
         accent: "#98705d",
-        surface: "linear-gradient(135deg, #53443c 0%, #171412 58%, #765849 100%)",
+        surface:
+            "linear-gradient(135deg, #53443c 0%, #171412 58%, #765849 100%)",
         finish: "matt",
     },
+
     {
         id: "synthetic",
         title: "Synthetic",
@@ -302,7 +375,8 @@ export const visitingCardTypes = [
         quantity: "1000 cards",
         sides: "Double side",
         accent: "#b89856",
-        surface: "linear-gradient(135deg, #e3ca84 0%, #85713e 45%, #f1e6c9 100%)",
+        surface:
+            "linear-gradient(135deg, #e3ca84 0%, #85713e 45%, #f1e6c9 100%)",
         finish: "synthetic",
     },
 ] as const;
@@ -320,5 +394,7 @@ export const photoFrameImage =
 export function getServiceBySlug(
     slug: string,
 ): ServiceConfig | undefined {
-    return services.find((service) => service.slug === slug);
+    return services.find(
+        (service) => service.slug === slug,
+    );
 }

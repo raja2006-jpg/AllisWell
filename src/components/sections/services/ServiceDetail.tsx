@@ -30,11 +30,13 @@ export default function ServiceDetail({
         "digital-store";
 
     return (
+        
         <main className="bg-white">
             {/* =====================================================
                 INTRO
             ====================================================== */}
             <section className="bg-white">
+                <section id="packages" className="..."></section>
                 <div className="mx-auto max-w-[1420px] px-6 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
                     <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.4fr_1fr] lg:gap-20">
                         <div>
@@ -72,7 +74,9 @@ export default function ServiceDetail({
                 SERVICE OFFERS
             ====================================================== */}
             {isDigitalStore ? (
+                
                 <section className="bg-[#f4f1ea]">
+                    
                     <div className="mx-auto max-w-[1420px] px-6 sm:px-8 lg:px-12">
                         {/* Visiting Cards */}
                         <div className="border-t border-black/[0.10] py-16 sm:py-20 lg:py-24">

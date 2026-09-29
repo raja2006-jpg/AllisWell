@@ -5,6 +5,9 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/data/site";
+import WhatsAppFloating from "@/components/ui/WhatsAppButton";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
+
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -104,7 +107,9 @@ export default function RootLayout({
       </head>
       <body className="bg-brand-black text-brand-white antialiased">
         <Navbar />
-        <main>{children}</main>
+        <main>{children}
+           <LocalBusinessSchema />
+<WhatsAppFloating /></main>
         <Footer />
         <Toaster
           theme="dark"

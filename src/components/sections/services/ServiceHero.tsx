@@ -26,7 +26,7 @@ export default function ServiceHero({
         )}`;
 
     return (
-        <section className="bg-[#080808] text-white">
+        <section className="bg-black text-white">
             {/* =====================================================
                 TOP INTRO
             ====================================================== */}
@@ -166,17 +166,33 @@ export default function ServiceHero({
                     scrollHint="Scroll to explore"
                     useWindowScroll
                     fullBleed
-                    startWidth={62}
-                    startHeight={60}
+                    startWidth={82}
+                    startHeight={80}
                     startRadius={24}
                     endRadius={0}
-                    mediaZoom={1.18}
+                    mediaZoom={1.08}
                     scrollDistance={1}
                     holdDistance={0.28}
                     smoothing={0.075}
                     overlayScrim={0.38}
                 >
-                    <div className="max-w-[720px] text-white">
+                    {/* =================================================
+                        CENTER CONTENT BACKGROUND + SHADOW ONLY
+                    ================================================== */}
+                    <div
+                        className="
+                            max-w-[1720px]
+                            rounded-xl
+                            
+                            bg-black/[0.32]
+                            px-6
+                            py-7
+                            shadow-[0_24px_80px_rgba(0,0,0,0.50)]
+                            
+                            sm:px-8
+                            sm:py-8
+                        "
+                    >
                         <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#E3262E]">
                             {service.category}
                         </p>
@@ -189,31 +205,40 @@ export default function ServiceHero({
                             {service.description}
                         </p>
 
-                        <Link
-                            href={bookingHref}
-                            className="
-                                mt-7
-                                inline-flex
-                                items-center
-                                gap-3
-                                rounded-full
-                                bg-[#E3262E]
-                                px-6
-                                py-3.5
-                                text-[9px]
-                                font-bold
-                                uppercase
-                                tracking-[0.18em]
-                                text-white
-                                transition-all
-                                duration-300
-                                hover:bg-white
-                                hover:text-black
-                            "
-                        >
-                            Enquire Now
-                            <ArrowUpRight size={13} />
-                        </Link>
+                        <button
+    type="button"
+    onClick={() => {
+        document
+            .getElementById("packages")
+            ?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+    }}
+    className="
+        mt-7
+        inline-flex
+        items-center
+        gap-3
+        rounded-md
+        bg-[#E3262E]
+        px-6
+        py-3.5
+        text-[9px]
+        font-bold
+        uppercase
+        tracking-[0.18em]
+        text-white
+        transition-all
+        duration-300
+        hover:bg-white
+        hover:text-black
+        border-white/90
+    "
+>
+    View Now
+    <ArrowUpRight size={13} />
+</button>
                     </div>
                 </ScrollExpand>
             </div>

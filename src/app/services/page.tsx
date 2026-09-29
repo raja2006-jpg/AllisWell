@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import ServicesDirectory from "@/components/sections/services/ServicesDirectory";
 import ServicesHero from "@/components/sections/services/ServicesHero";
 import ClientsMarquee from "@/components/sections/services/ClientsMarquee";
+import QuoteCalculator from "@/components/sections/services/QuoteCalculator";
 
 export const metadata: Metadata = {
     title: "Services",
@@ -15,6 +16,7 @@ export default function ServicesPage() {
             <ServicesHero />
             {/* <ServicesDirectory /> */}
             <ClientsMarquee />
+             <QuoteCalculator />
         </>
     );
 }

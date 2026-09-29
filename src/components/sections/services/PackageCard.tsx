@@ -51,7 +51,9 @@ export default function PackageCard({
               : "03";
 
     return (
+        
         <motion.article
+        
             whileHover={{
                 y: -4,
             }}
@@ -72,6 +74,7 @@ export default function PackageCard({
                 }
             `}
         >
+            
             {/* selected line */}
             <span
                 className={`

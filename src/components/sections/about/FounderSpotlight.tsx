@@ -19,7 +19,7 @@ import {
     Sparkles,
     TrendingUp,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 const processSteps = [
     {
@@ -91,7 +91,7 @@ type PhaseCardProps = {
     progress: ReturnType<typeof useSpring>;
 };
 
-function PhaseCard({ step, index, progress }: PhaseCardProps) {
+const PhaseCard = memo(function PhaseCard({ step, index, progress }: PhaseCardProps) {
     const total = processSteps.length;
 
     /*
@@ -154,6 +154,9 @@ function PhaseCard({ step, index, progress }: PhaseCardProps) {
                 scale,
                 y,
                 rotate,
+                willChange: "transform, opacity",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
             }}
             className="absolute inset-0 flex items-center justify-center"
         >
@@ -241,7 +244,7 @@ function PhaseCard({ step, index, progress }: PhaseCardProps) {
             </div>
         </motion.article>
     );
-}
+});
 
 /* ============================================================
    MAIN SECTION
@@ -251,6 +254,7 @@ export function FounderSpotlight() {
     const phasesRef = useRef<HTMLDivElement | null>(null);
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const lastActiveIndexRef = useRef(0);
 
     /*
      * Scroll progress belongs ONLY to the phases area.
@@ -280,15 +284,18 @@ export function FounderSpotlight() {
             Math.floor(latest * processSteps.length),
         );
 
-        setActiveIndex((current) =>
-            current === nextIndex ? current : nextIndex,
-        );
+        if (lastActiveIndexRef.current !== nextIndex) {
+            lastActiveIndexRef.current = nextIndex;
+            setActiveIndex(nextIndex);
+        }
     });
 
-    const progressWidth = useTransform(
+    // Keep the progress indicators compositor-friendly.
+    // Using transforms avoids layout recalculation on every scroll frame.
+    const progressScale = useTransform(
         smoothProgress,
         [0, 1],
-        ["0%", "100%"],
+        [0, 1],
     );
 
     return (
@@ -371,7 +378,7 @@ export function FounderSpotlight() {
                             }}
                             className="max-w-5xl text-5xl font-black leading-[0.94] tracking-[-0.055em] text-[#111111] sm:text-6xl md:text-7xl lg:text-[78px]"
                         >
-                            We don't just
+                            We don&apos;t just
                             <span className="text-brand-red"> post.</span>
                             <br />
                             We build
@@ -455,13 +462,10 @@ export function FounderSpotlight() {
 
                                         <motion.div
                                             style={{
-                                                height: useTransform(
-                                                    smoothProgress,
-                                                    [0, 1],
-                                                    ["0%", "100%"],
-                                                ),
+                                                scaleY: progressScale,
+                                                willChange: "transform",
                                             }}
-                                            className="absolute left-[8px] top-2 w-px origin-top bg-brand-red"
+                                            className="absolute left-[8px] top-2 bottom-2 w-px origin-top bg-brand-red"
                                         />
 
                                         <div className="space-y-6">
@@ -553,9 +557,10 @@ export function FounderSpotlight() {
                                         <div className="relative h-[3px] overflow-hidden rounded-full bg-black/10">
                                             <motion.div
                                                 style={{
-                                                    width: progressWidth,
+                                                    scaleX: progressScale,
+                                                    willChange: "transform",
                                                 }}
-                                                className="h-full rounded-full bg-brand-red"
+                                                className="h-full w-full origin-left rounded-full bg-brand-red"
                                             />
                                         </div>
                                     </div>
@@ -598,9 +603,10 @@ export function FounderSpotlight() {
                                 <div className="mt-5 relative h-[3px] overflow-hidden rounded-full bg-black/10">
                                     <motion.div
                                         style={{
-                                            width: progressWidth,
+                                            scaleX: progressScale,
+                                            willChange: "transform",
                                         }}
-                                        className="h-full rounded-full bg-brand-red"
+                                        className="h-full w-full origin-left rounded-full bg-brand-red"
                                     />
                                 </div>
                             </div>
@@ -656,7 +662,7 @@ export function FounderSpotlight() {
                                 </p>
 
                                 <h3 className="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-[-0.04em] text-white md:text-4xl lg:text-5xl">
-                                    Let's make your business
+                                    Let&apos;s make your business
                                     <span className="text-white/25">
                                         {" "}
                                         impossible to overlook.
@@ -665,7 +671,7 @@ export function FounderSpotlight() {
 
                                 <p className="mt-5 max-w-xl text-sm leading-7 text-white/40">
                                     Tell us about your business and what you
-                                    want to promote. Let's start with a
+                                    want to promote. Let&apos;s start with a
                                     conversation.
                                 </p>
                             </div>

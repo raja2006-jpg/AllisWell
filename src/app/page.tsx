@@ -12,6 +12,9 @@ import { TestimonialsCarousel } from "@/components/sections/home/TestimonialsCar
 import { CTABanner } from "@/components/sections/home/CTABanner";
 import { FAQSection } from "@/components/sections/home/FAQSection";
 import { ContactCTA } from "@/components/sections/home/ContactCTA";
+import QuickLeadForm from "@/components/sections/home/QuickLeadForm";
+
+
 
 export const metadata: Metadata = {
   title: "AllIsWellMSVlogsz — Digital Marketing & Business Promotion",
@@ -35,6 +38,7 @@ export default function HomePage() {
       <CTABanner />
       <FAQSection />
       <ContactCTA />
+      <QuickLeadForm />
     </>
   );
 }
