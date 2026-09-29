@@ -19,7 +19,7 @@ import QuickLeadForm from "@/components/sections/home/QuickLeadForm";
 export const metadata: Metadata = {
   title: "AllIsWellMSVlogsz — Digital Marketing & Business Promotion",
   description:
-    "We help local businesses, shops, hotels and brands grow through Instagram promotions, YouTube marketing and engaging video content. 48.3K+ Instagram followers.",
+    "We help local businesses, shops, hotels  and brands grow through Instagram promotions, YouTube marketing and engaging video content. 48.3K+ Instagram followers.",
 };
 
 export default function HomePage() {
