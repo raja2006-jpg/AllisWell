@@ -399,7 +399,7 @@ export function HeroSection() {
                 <div className="relative aspect-[0.82] overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0b] shadow-[0_30px_100px_rgba(0,0,0,0.55)]">
 
                   <Image
-                    src="/logo2.jpeg"
+                    src="/logo2.jpg"
                     alt="All Is Well MS Vlogs"
                     fill
                     priority
